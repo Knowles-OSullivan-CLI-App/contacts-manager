@@ -68,7 +68,8 @@ public class ContactsApplication {
     public static List<Contact> showContacts() throws IOException {
         Path contactsPath = Paths.get("data", "contacts.txt");
         List<String> contactList = Files.readAllLines(contactsPath);
-
+        System.out.println("Name | Phone Number");
+        System.out.println("-------------------");
         for (int i = 0; i < contactList.size(); i += 1) {
             System.out.println((i + 1) + ": " + contactList.get(i));
         }
@@ -86,7 +87,7 @@ public class ContactsApplication {
         for (String contact : contactList) {
             String[] contactInfo = contact.split("\\|");
             String name = contactInfo[0].trim();
-            if (name.equalsIgnoreCase(searchName)) {
+            if (name.toLowerCase().contains(searchName.toLowerCase())) {
                 System.out.println("Found contact: " + contact);
             }
         }
@@ -102,6 +103,15 @@ public class ContactsApplication {
 //        defaultContact();
 //        showContacts();
         searchContacts();
+
+
+//        Path contactsPath = Paths.get("data", "contacts.txt");
+//        List<String> contactList = Files.readAllLines(contactsPath);
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter a name to delete ");
+//        String searchName = scanner.nextLine().trim();
+
+
 
 
 
