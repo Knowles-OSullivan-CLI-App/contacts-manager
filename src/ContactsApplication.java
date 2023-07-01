@@ -75,13 +75,7 @@ public class ContactsApplication {
         return null;
     }
 
-
-    public static void main(String[] args) throws IOException {
-//        List<src.Contact> contacts = showContacts();
-//        createDataFileIfNotExists();
-//        defaultContact();
-//        showContacts();
-
+    public static void searchContacts() throws IOException {
         Path contactsPath = Paths.get("data", "contacts.txt");
         List<String> contactList = Files.readAllLines(contactsPath);
 
@@ -93,9 +87,23 @@ public class ContactsApplication {
             String[] contactInfo = contact.split("\\|");
             String name = contactInfo[0].trim();
             if (name.equalsIgnoreCase(searchName)) {
-                System.out.println("Found contact :" + searchName);
+                System.out.println("Found contact: " + contact);
             }
         }
+
+    }
+
+
+
+    public static void main(String[] args) throws IOException {
+
+//        List<src.Contact> contacts = showContacts();
+//        createDataFileIfNotExists();
+//        defaultContact();
+//        showContacts();
+        searchContacts();
+
+
 
 
 
