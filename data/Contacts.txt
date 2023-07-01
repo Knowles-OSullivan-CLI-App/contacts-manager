@@ -1,18 +1,4 @@
-Dragon
-12345666
-coffee
-Cold
-Blue
-Nolan
-Kofi Knowles
-123456
-Kofi Knowles
-40422222
-Kofi
-213443
-Bob
-11235567
-Bob
-12343211
-No
-12233222
+Dragon | 123432122
+coffee | 111111111
+Bill | 11212121221
+Bob | 122232223

@@ -58,19 +58,19 @@ public class ContactsApplication {
             String addPhone = String.valueOf(scanner.nextInt());
             System.out.println("Contact has been added");
 
-            List<String> ContactList = Arrays.asList(addContact + " | " + addPhone);
+            List<String> contactList = Arrays.asList(addContact + " | " + addPhone);
             Path filename = Paths.get("data", "Contacts.txt");
-            Files.write(filename, ContactList, StandardOpenOption.APPEND);
+            Files.write(filename, contactList, StandardOpenOption.APPEND);
             System.out.println(addContact + " " + addPhone);
         }
     }
 
     public static List<Contact> showContacts() throws IOException {
         Path contactsPath = Paths.get("data", "contacts.txt");
-        List<String> ContactList = Files.readAllLines(contactsPath);
+        List<String> contactList = Files.readAllLines(contactsPath);
 
-        for (int i = 0; i < ContactList.size(); i += 1) {
-            System.out.println((i + 1) + ": " + ContactList.get(i));
+        for (int i = 0; i < contactList.size(); i += 1) {
+            System.out.println((i + 1) + ": " + contactList.get(i));
         }
         return null;
     }
@@ -78,17 +78,25 @@ public class ContactsApplication {
 
     public static void main(String[] args) throws IOException {
 //        List<src.Contact> contacts = showContacts();
-        createDataFileIfNotExists();
-        defaultContact();
-        showContacts();
+//        createDataFileIfNotExists();
+//        defaultContact();
+//        showContacts();
 
         Path contactsPath = Paths.get("data", "contacts.txt");
-        List<String> ContactList = Files.readAllLines(contactsPath);
+        List<String> contactList = Files.readAllLines(contactsPath);
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a name to search: ");
         String searchName = scanner.nextLine().trim();
-        List<Contact> foundContacts = new ArrayList<>();
+
+        for (String contact : contactList) {
+            String[] contactInfo = contact.split("\\|");
+            String name = contactInfo[0].trim();
+            if (name.equalsIgnoreCase(searchName)) {
+                System.out.println("Found contact :" + searchName);
+            }
+        }
+
 
 
     }
