@@ -1,7 +1,3 @@
-package src;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -62,18 +58,38 @@ public class ContactsApplication {
             String addPhone = String.valueOf(scanner.nextInt());
             System.out.println("Contact has been added");
 
-
-            List<String> ContactList = Arrays.asList(addContact, addPhone);
+            List<String> ContactList = Arrays.asList(addContact + " | " + addPhone);
             Path filename = Paths.get("data", "Contacts.txt");
             Files.write(filename, ContactList, StandardOpenOption.APPEND);
             System.out.println(addContact + " " + addPhone);
         }
-
     }
 
+    public static List<Contact> showContacts() throws IOException {
+        Path contactsPath = Paths.get("data", "contacts.txt");
+        List<String> ContactList = Files.readAllLines(contactsPath);
+
+        for (int i = 0; i < ContactList.size(); i += 1) {
+            System.out.println((i + 1) + ": " + ContactList.get(i));
+        }
+        return null;
+    }
+
+
     public static void main(String[] args) throws IOException {
+//        List<src.Contact> contacts = showContacts();
         createDataFileIfNotExists();
         defaultContact();
+        showContacts();
+
+        Path contactsPath = Paths.get("data", "contacts.txt");
+        List<String> ContactList = Files.readAllLines(contactsPath);
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a name to search: ");
+        String searchName = scanner.nextLine().trim();
+        List<Contact> foundContacts = new ArrayList<>();
+
 
     }
 }
