@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -53,7 +54,7 @@ public class ContactsApplication {
             System.out.println("Enter contact name");
             String addContact = scanner.nextLine();
             System.out.println("Enter contact phone number");
-            String addPhone = String.valueOf(scanner.nextInt());
+            String addPhone = scanner.nextLine().trim();
             System.out.println("Contact has been added");
 
             List<String> contactList = Arrays.asList(addContact + " | " + addPhone);
@@ -93,6 +94,7 @@ public class ContactsApplication {
     }
 
     // https://www.youtube.com/watch?v=ij07fW5q4oo
+    // **File objs are older and platform dependent.
     public static void deleteContact() throws IOException {
         Path contactsPath = Paths.get("data", "contacts.txt");
         List<String> contactList = Files.readAllLines(contactsPath);
@@ -160,11 +162,12 @@ public class ContactsApplication {
         for (String contact : contactList) {
             String[] contactInfo = contact.split("\\|");
             String name = contactInfo[0].trim();
-            //checks if the current contacts name is not equal to the name provided by user, if it is true than it writes contact to the new file
+            //checks if the current contacts name is not equal to the name provided by user, if it is true then it writes contact to the new file
             if (!name.equalsIgnoreCase(searchNameToDelete)) {
                 pw2.println(contact);
             }
         }
+        System.out.println(searchNameToDelete + " has been deleted");
 
         pw2.flush();
         pw2.close();
@@ -172,12 +175,30 @@ public class ContactsApplication {
         fw2.close();
     }
 
+
     public static void main(String[] args) throws IOException {
-        
-        deleteContact();
-        
+//        createDataFileIfNotExists();
+        Scanner scanner = new Scanner(System.in);
+        boolean flag = true;
+        while (flag) {
+            System.out.println("\n1. View contacts.\n2. Add a search contact.\n3. Search contact by name.\n4. Delete an existing contact.\n5. Exit\n");
+
+            int userInterfaceInput = scanner.nextInt();
+
+
+            switch (userInterfaceInput) {
+                case 1 -> showContacts();
+                case 2 -> defaultContact();
+                case 3 -> searchContacts();
+                case 4 -> deleteContact();
+                case 5 -> {
+                    System.out.println("Exiting program...");
+                    flag = false;
+                    System.exit(0);
+                }
+                default -> System.out.println("Enter a valid number");
+            }
+        }
     }
-
-
-    
 }
+
