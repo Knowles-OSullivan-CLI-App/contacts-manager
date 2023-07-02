@@ -102,20 +102,20 @@ public class ContactsApplication {
 //        createDataFileIfNotExists();
 //        defaultContact();
 //        showContacts();
-        searchContacts();
+//        searchContacts();
 
 
-//        Path contactsPath = Paths.get("data", "contacts.txt");
-//        List<String> contactList = Files.readAllLines(contactsPath);
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter a name to delete ");
-//        String searchName = scanner.nextLine().trim();
-
-
-
-
-
-
-
+        Path contactsPath = Paths.get("data", "contacts.txt");
+        List<String> contactList = Files.readAllLines(contactsPath);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("You must enter full name in order to delete, please provide name.");
+        String searchNameToDelete = scanner.nextLine().trim();
+            for (String contact : contactList) {
+                String[] contactInfo = contact.split("\\|");
+                String name = contactInfo[0].trim();
+                if (name.equalsIgnoreCase(searchNameToDelete)) {
+                    name
+                }
+        }
     }
 }
