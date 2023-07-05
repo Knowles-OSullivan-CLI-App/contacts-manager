@@ -123,12 +123,12 @@ public class ContactsApplication {
         // declares a var to keep track of line number
         int line = 0;
 
-        //while loop condition reads each line of file until it reches the end (which would return null)
+        //while loop condition reads each line of file until it reaches the end (which would return null)
         while ((currentLine = br.readLine()) != null) {
             line++;
             // declares var to hold deleted line
             int deletedLine = 0;
-            // checks if current line being read is different than one being deleted and sif it is then it stores it into temp file
+            // checks if current line being read is different then one being deleted and sif it is then it stores it into temp file
             if (line != deletedLine) {
                 pw.println(currentLine);
             }
