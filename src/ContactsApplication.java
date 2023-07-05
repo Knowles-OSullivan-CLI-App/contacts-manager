@@ -85,45 +85,43 @@ public class ContactsApplication {
     }
 
     // https://www.youtube.com/watch?v=ij07fW5q4oo
-    // **File objs are older and platform dependent.
-    public static void deleteContact() throws IOException {
+     public static void deleteContact() throws IOException {
         Path contactsPath = Paths.get("data", "contacts.txt");
         List<String> contactList = Files.readAllLines(contactsPath);
         Scanner scanner = new Scanner(System.in);
         System.out.println("You must enter the full name in order to delete. Please provide the name:");
         String searchNameToDelete = scanner.nextLine().trim();
 
-        // creates new file-writer obj to overwrite the original contacts file name
+        // Creates a new file-writer obj to overwrite the original contacts file name
         FileWriter fw2 = new FileWriter(String.valueOf(contactsPath), false);
-        //creates new BW obj
+        // Creates a new BW obj
         BufferedWriter bw2 = new BufferedWriter(fw2);
-        //creates new PW obj
+        // Creates a new PW obj
         PrintWriter pw2 = new PrintWriter(bw2);
 
         String name = null;
+        boolean contactFound = false;
         for (String contact : contactList) {
             String[] contactInfo = contact.split("\\|");
             name = contactInfo[0].trim();
-            //checks if the current contacts name is not equal to the name provided by user, if it is true then it writes contact to the new file
+
             if (!name.equalsIgnoreCase(searchNameToDelete)) {
                 pw2.println(contact);
-
-            }
-            if (searchNameToDelete != name) {
-                System.out.println("Please try again.");
-                break;
-
             } else {
+                contactFound = true;
                 System.out.println(searchNameToDelete + " has been deleted");
             }
         }
 
+        if (!contactFound) {
+            System.out.println("Contact not found. Please try again.");
+        }
 
-        pw2.flush();
         pw2.close();
         bw2.close();
         fw2.close();
     }
+
 
     public static void exitProgram(Boolean flag) {
         System.out.println("Exiting program...");
