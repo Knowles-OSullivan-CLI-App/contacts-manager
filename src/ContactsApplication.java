@@ -133,7 +133,7 @@ public class ContactsApplication {
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         while (flag) {
-            System.out.println("\n1. View contacts.\n2. Add a search contact.\n3. Search contact by name.\n4. Delete an existing contact.\n5. Exit\n");
+            System.out.println("\n1. View contacts.\n2. Add a contact.\n3. Search contact by name.\n4. Delete an existing contact.\n5. Exit\n");
 
             int userInterfaceInput = scanner.nextInt();
 
