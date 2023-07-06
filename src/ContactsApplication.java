@@ -29,10 +29,10 @@ public class ContactsApplication {
 
     public static void addContact() throws IOException {
         Scanner scanner = new Scanner(System.in);
-        String userName;
+        String userInput;
         System.out.println("Add New Contact, Yes or No");
-        userName = scanner.nextLine();
-        if (userName.equalsIgnoreCase("Yes")) {
+        userInput = scanner.nextLine();
+        if (userInput.equalsIgnoreCase("Yes")) {
             System.out.println("Enter contact name");
             String addContact = scanner.nextLine();
             String addPhone = "";
